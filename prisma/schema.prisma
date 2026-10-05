@@ -1,0 +1,135 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/prisma/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// ENUMS NATIVOS 
+// ==========================================
+
+enum Rol {
+  ADMIN
+  AGENTE
+  EMPLEADO
+}
+
+enum Estado {
+  ACTIVO
+  INACTIVO
+  SUSPENDIDO
+}
+
+enum TipoCategoria {
+  INCIDENCIA
+  REQUERIMIENTO
+}
+
+enum EstadoTicket {
+  ABIERTO
+  EN_PROCESO
+  RESUELTO
+  CERRADO
+}
+
+// ==========================================
+// MODELOS / TABLAS
+// ==========================================
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nombres   String   @db.VarChar(100)
+  apellidos String   @db.VarChar(100)
+  masculino Boolean
+  email     String   @unique
+  password  String   @db.VarChar(255)
+  rol       Rol
+  estado    Estado
+  created   DateTime @default(now())
+  updated   DateTime @updatedAt
+
+  // Relaciones inversas
+  tareasReportadas Tarea[]        @relation("EmpleadoTareas")
+  tareasAsignadas  Tarea[]        @relation("AgenteTareas")
+  comentarios      Comentario[]
+  notificaciones   Notificacion[]
+
+  @@map("usuarios")
+}
+
+model Categoria {
+  id       Int           @id @default(autoincrement())
+  tipo     TipoCategoria
+  sub_tipo String        @unique @db.VarChar(200)
+  created  DateTime      @default(now())
+  updated  DateTime      @updatedAt
+
+  // Relaciones inversas
+  tareas Tarea[]
+
+  @@map("categorias")
+}
+
+model Tarea {
+  id          Int          @id @default(autoincrement())
+  titulo      String       @db.VarChar(255)
+  descripcion String       @db.Text
+  estado      EstadoTicket
+  created     DateTime     @default(now())
+  updated     DateTime     @updatedAt
+
+  // Claves foráneas (Opcionales gracias al ?)
+  id_empleado  Int?
+  id_agente    Int?
+  id_categoria Int
+
+  // Relaciones
+  empleado    Usuario?     @relation("EmpleadoTareas", fields: [id_empleado], references: [id], onDelete: Restrict)
+  agente      Usuario?     @relation("AgenteTareas", fields: [id_agente], references: [id], onDelete: SetNull)
+  categoria   Categoria    @relation(fields: [id_categoria], references: [id], onDelete: Restrict)
+  comentarios Comentario[]
+
+  @@index([estado])
+  @@map("tareas")
+}
+
+model Comentario {
+  id            Int          @id @default(autoincrement())
+  descripcion   String?      @db.VarChar(500)
+  estado_actual EstadoTicket
+  fecha         DateTime     @default(now())
+  updated       DateTime     @updatedAt
+
+  // Claves foráneas
+  id_autor Int
+  id_tarea Int
+
+  // Relaciones
+  autor          Usuario        @relation(fields: [id_autor], references: [id], onDelete: Cascade)
+  tarea          Tarea          @relation(fields: [id_tarea], references: [id], onDelete: Cascade)
+  notificaciones Notificacion[]
+
+  @@map("comentarios")
+}
+
+model Notificacion {
+  id      Int      @id @default(autoincrement())
+  leido   Boolean  @default(false)
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
+  // Claves foráneas
+  id_comentario Int
+  id_usuario    Int
+
+  // Relaciones
+  comentario Comentario @relation(fields: [id_comentario], references: [id], onDelete: Cascade)
+  usuario    Usuario    @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+
+  @@index([id_usuario, leido]) // Optimiza la carga de notificaciones no leídas
+  @@map("notificaciones")
+}
