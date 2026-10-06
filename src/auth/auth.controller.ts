@@ -14,12 +14,13 @@ import { LoginAuthDto } from './dto/login-auth.dto.js';
 import { AuthService } from './auth.service.js';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto.js';
 import { Public } from '../common/decorators/public.decorator.js';
+import { Roles } from '../common/decorators/roles.decorator.js';
 
-@Public()
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -30,6 +31,8 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  // @Roles('ADMIN')
+  @Public()
   @Post('register')
   async register(@Body() createUsuarioDto: CreateUsuarioDto) {
     return this.authService.register(createUsuarioDto);

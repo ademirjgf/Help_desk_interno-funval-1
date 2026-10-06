@@ -4,9 +4,9 @@
   ----------------------------------------------------------------------------------
   |        COLABORADOR                  |                   MODULO                 |
   ----------------------------------------------------------------------------------
-  | Ademir Jesus Gomez Fuentes          |                 Comentario               |
-  | David Gerardo Nuñez Rojas           |               Tarea (ticket)             |
-  | Neils Sergio Alanoca Ticona         |           Notificacion, Categoria        |
+  | Ademir Jesus Gomez Fuentes          |                Notificacion              |
+  | David Gerardo Nuñez Rojas           |               Tarea, Categoria           |
+  | Neils Sergio Alanoca Ticona         |                 Comentario               |
   | Manuel Charles Mitacc Quilcaro      |                Usuario(Auth)             |
   ----------------------------------------------------------------------------------
 

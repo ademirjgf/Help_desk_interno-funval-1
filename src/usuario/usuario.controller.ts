@@ -2,15 +2,17 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UsuarioService } from './usuario.service.js';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
+import { Roles } from '../common/decorators/roles.decorator.js';
 
+@Roles('ADMIN')
 @Controller('usuario')
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
-  @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto) {
-    return this.usuarioService.create(createUsuarioDto);
-  }
+  // @Post()
+  // create(@Body() createUsuarioDto: CreateUsuarioDto) {
+  //   return this.usuarioService.create(createUsuarioDto);
+  // }
 
   @Get()
   findAll() {
