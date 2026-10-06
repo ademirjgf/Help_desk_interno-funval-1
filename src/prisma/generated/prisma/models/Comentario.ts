@@ -202,7 +202,7 @@ export type ComentarioGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type ComentarioGroupByOutputType = {
   id: number
   descripcion: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual: $Enums.EstadoTicket | null
   fecha: Date
   updated: Date
   id_autor: number
@@ -235,7 +235,7 @@ export type ComentarioWhereInput = {
   NOT?: Prisma.ComentarioWhereInput | Prisma.ComentarioWhereInput[]
   id?: Prisma.IntFilter<"Comentario"> | number
   descripcion?: Prisma.StringNullableFilter<"Comentario"> | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFilter<"Comentario"> | $Enums.EstadoTicket
+  estado_actual?: Prisma.EnumEstadoTicketNullableFilter<"Comentario"> | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   id_autor?: Prisma.IntFilter<"Comentario"> | number
@@ -248,7 +248,7 @@ export type ComentarioWhereInput = {
 export type ComentarioOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
-  estado_actual?: Prisma.SortOrder
+  estado_actual?: Prisma.SortOrderInput | Prisma.SortOrder
   fecha?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   id_autor?: Prisma.SortOrder
@@ -264,7 +264,7 @@ export type ComentarioWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ComentarioWhereInput[]
   NOT?: Prisma.ComentarioWhereInput | Prisma.ComentarioWhereInput[]
   descripcion?: Prisma.StringNullableFilter<"Comentario"> | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFilter<"Comentario"> | $Enums.EstadoTicket
+  estado_actual?: Prisma.EnumEstadoTicketNullableFilter<"Comentario"> | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   id_autor?: Prisma.IntFilter<"Comentario"> | number
@@ -277,7 +277,7 @@ export type ComentarioWhereUniqueInput = Prisma.AtLeast<{
 export type ComentarioOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
-  estado_actual?: Prisma.SortOrder
+  estado_actual?: Prisma.SortOrderInput | Prisma.SortOrder
   fecha?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   id_autor?: Prisma.SortOrder
@@ -295,7 +295,7 @@ export type ComentarioScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ComentarioScalarWhereWithAggregatesInput | Prisma.ComentarioScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Comentario"> | number
   descripcion?: Prisma.StringNullableWithAggregatesFilter<"Comentario"> | string | null
-  estado_actual?: Prisma.EnumEstadoTicketWithAggregatesFilter<"Comentario"> | $Enums.EstadoTicket
+  estado_actual?: Prisma.EnumEstadoTicketNullableWithAggregatesFilter<"Comentario"> | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeWithAggregatesFilter<"Comentario"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Comentario"> | Date | string
   id_autor?: Prisma.IntWithAggregatesFilter<"Comentario"> | number
@@ -304,7 +304,7 @@ export type ComentarioScalarWhereWithAggregatesInput = {
 
 export type ComentarioCreateInput = {
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   autor: Prisma.UsuarioCreateNestedOneWithoutComentariosInput
@@ -315,7 +315,7 @@ export type ComentarioCreateInput = {
 export type ComentarioUncheckedCreateInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_autor: number
@@ -325,7 +325,7 @@ export type ComentarioUncheckedCreateInput = {
 
 export type ComentarioUpdateInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   autor?: Prisma.UsuarioUpdateOneRequiredWithoutComentariosNestedInput
@@ -336,7 +336,7 @@ export type ComentarioUpdateInput = {
 export type ComentarioUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_autor?: Prisma.IntFieldUpdateOperationsInput | number
@@ -347,7 +347,7 @@ export type ComentarioUncheckedUpdateInput = {
 export type ComentarioCreateManyInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_autor: number
@@ -356,7 +356,7 @@ export type ComentarioCreateManyInput = {
 
 export type ComentarioUpdateManyMutationInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -364,7 +364,7 @@ export type ComentarioUpdateManyMutationInput = {
 export type ComentarioUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_autor?: Prisma.IntFieldUpdateOperationsInput | number
@@ -516,6 +516,10 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type NullableEnumEstadoTicketFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoTicket | null
+}
+
 export type ComentarioCreateNestedOneWithoutNotificacionesInput = {
   create?: Prisma.XOR<Prisma.ComentarioCreateWithoutNotificacionesInput, Prisma.ComentarioUncheckedCreateWithoutNotificacionesInput>
   connectOrCreate?: Prisma.ComentarioCreateOrConnectWithoutNotificacionesInput
@@ -532,7 +536,7 @@ export type ComentarioUpdateOneRequiredWithoutNotificacionesNestedInput = {
 
 export type ComentarioCreateWithoutAutorInput = {
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   tarea: Prisma.TareaCreateNestedOneWithoutComentariosInput
@@ -542,7 +546,7 @@ export type ComentarioCreateWithoutAutorInput = {
 export type ComentarioUncheckedCreateWithoutAutorInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_tarea: number
@@ -581,7 +585,7 @@ export type ComentarioScalarWhereInput = {
   NOT?: Prisma.ComentarioScalarWhereInput | Prisma.ComentarioScalarWhereInput[]
   id?: Prisma.IntFilter<"Comentario"> | number
   descripcion?: Prisma.StringNullableFilter<"Comentario"> | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFilter<"Comentario"> | $Enums.EstadoTicket
+  estado_actual?: Prisma.EnumEstadoTicketNullableFilter<"Comentario"> | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   id_autor?: Prisma.IntFilter<"Comentario"> | number
@@ -590,7 +594,7 @@ export type ComentarioScalarWhereInput = {
 
 export type ComentarioCreateWithoutTareaInput = {
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   autor: Prisma.UsuarioCreateNestedOneWithoutComentariosInput
@@ -600,7 +604,7 @@ export type ComentarioCreateWithoutTareaInput = {
 export type ComentarioUncheckedCreateWithoutTareaInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_autor: number
@@ -635,7 +639,7 @@ export type ComentarioUpdateManyWithWhereWithoutTareaInput = {
 
 export type ComentarioCreateWithoutNotificacionesInput = {
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   autor: Prisma.UsuarioCreateNestedOneWithoutComentariosInput
@@ -645,7 +649,7 @@ export type ComentarioCreateWithoutNotificacionesInput = {
 export type ComentarioUncheckedCreateWithoutNotificacionesInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_autor: number
@@ -670,7 +674,7 @@ export type ComentarioUpdateToOneWithWhereWithoutNotificacionesInput = {
 
 export type ComentarioUpdateWithoutNotificacionesInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   autor?: Prisma.UsuarioUpdateOneRequiredWithoutComentariosNestedInput
@@ -680,7 +684,7 @@ export type ComentarioUpdateWithoutNotificacionesInput = {
 export type ComentarioUncheckedUpdateWithoutNotificacionesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_autor?: Prisma.IntFieldUpdateOperationsInput | number
@@ -690,7 +694,7 @@ export type ComentarioUncheckedUpdateWithoutNotificacionesInput = {
 export type ComentarioCreateManyAutorInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_tarea: number
@@ -698,7 +702,7 @@ export type ComentarioCreateManyAutorInput = {
 
 export type ComentarioUpdateWithoutAutorInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tarea?: Prisma.TareaUpdateOneRequiredWithoutComentariosNestedInput
@@ -708,7 +712,7 @@ export type ComentarioUpdateWithoutAutorInput = {
 export type ComentarioUncheckedUpdateWithoutAutorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_tarea?: Prisma.IntFieldUpdateOperationsInput | number
@@ -718,7 +722,7 @@ export type ComentarioUncheckedUpdateWithoutAutorInput = {
 export type ComentarioUncheckedUpdateManyWithoutAutorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_tarea?: Prisma.IntFieldUpdateOperationsInput | number
@@ -727,7 +731,7 @@ export type ComentarioUncheckedUpdateManyWithoutAutorInput = {
 export type ComentarioCreateManyTareaInput = {
   id?: number
   descripcion?: string | null
-  estado_actual: $Enums.EstadoTicket
+  estado_actual?: $Enums.EstadoTicket | null
   fecha?: Date | string
   updated?: Date | string
   id_autor: number
@@ -735,7 +739,7 @@ export type ComentarioCreateManyTareaInput = {
 
 export type ComentarioUpdateWithoutTareaInput = {
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   autor?: Prisma.UsuarioUpdateOneRequiredWithoutComentariosNestedInput
@@ -745,7 +749,7 @@ export type ComentarioUpdateWithoutTareaInput = {
 export type ComentarioUncheckedUpdateWithoutTareaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_autor?: Prisma.IntFieldUpdateOperationsInput | number
@@ -755,7 +759,7 @@ export type ComentarioUncheckedUpdateWithoutTareaInput = {
 export type ComentarioUncheckedUpdateManyWithoutTareaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  estado_actual?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
+  estado_actual?: Prisma.NullableEnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_autor?: Prisma.IntFieldUpdateOperationsInput | number
@@ -866,7 +870,7 @@ export type $ComentarioPayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     descripcion: string | null
-    estado_actual: $Enums.EstadoTicket
+    estado_actual: $Enums.EstadoTicket | null
     fecha: Date
     updated: Date
     id_autor: number

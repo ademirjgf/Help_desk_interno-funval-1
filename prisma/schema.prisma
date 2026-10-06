@@ -98,11 +98,11 @@ model Tarea {
 }
 
 model Comentario {
-  id            Int          @id @default(autoincrement())
-  descripcion   String?      @db.VarChar(500)
-  estado_actual EstadoTicket
-  fecha         DateTime     @default(now())
-  updated       DateTime     @updatedAt
+  id            Int           @id @default(autoincrement())
+  descripcion   String?       @db.VarChar(500)
+  estado_actual EstadoTicket?
+  fecha         DateTime      @default(now())
+  updated       DateTime      @updatedAt
 
   // Claves foráneas
   id_autor Int
