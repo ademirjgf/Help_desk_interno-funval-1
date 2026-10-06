@@ -2,6 +2,7 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import pg from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from './generated/prisma/client.js';
+import { ConfigService } from '@nestjs/config';
 import 'dotenv/config';
 
 @Injectable()
@@ -9,8 +10,8 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor() {
-    const connectionString = process.env.DATABASE_URL;
+  constructor(private readonly configService: ConfigService) {
+    const connectionString = configService.getOrThrow<string>('DATABASE_URL');
     if (!connectionString) {
       throw new Error('no existe la variable de entorno DATABASE_URL');
     }

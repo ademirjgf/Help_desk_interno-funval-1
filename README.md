@@ -4,14 +4,18 @@
   ----------------------------------------------------------------------------------
   |        COLABORADOR                  |                   MODULO                 |
   ----------------------------------------------------------------------------------
-  | Ademir Jesus Gomez Fuentes          |                 Comentario               |
-  | David Gerardo Nuñez Rojas           |               Tarea (ticket)             |
-  | Neils Sergio Alanoca Ticona         |           Notificacion, Categoria        |
+  | Ademir Jesus Gomez Fuentes          |                Notificacion              |
+  | David Gerardo Nuñez Rojas           |               Tarea, Categoria           |
+  | Neils Sergio Alanoca Ticona         |                 Comentario               |
   | Manuel Charles Mitacc Quilcaro      |                Usuario(Auth)             |
   ----------------------------------------------------------------------------------
 
+### Tablero SCRUM Grupal con Trello:
+    `https://trello.com/b/NAsfWvLs/scrum-funval-grupo`  
+
 ### Nomenclatura para el proyecto:
-1.- Ramas, se nombraran con primer nombre y apellido del colaborador
+1.- Ramas, se nombraran con el nombre de pila del colaborador, más '/', más descripción corta.
+    Ejemplo: `manuel/usuario-auth`
 2.- Commits: (sin punto final y a lo más 72 carácteres)
     - Formato Completo Commit: <tipo>(<ámbito opcional>): <descripción>
     - <tipo>: 
