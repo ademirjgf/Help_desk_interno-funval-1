@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsuarioService } from '../usuario/usuario.service.js';
 import { LoginAuthDto } from './dto/login-auth.dto.js';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto.js';
@@ -13,6 +13,10 @@ export class AuthService {
   ) {}
   async validateUsuario(loginAuthDto: LoginAuthDto) {
     const user = await this.usuarioService.findEmail(loginAuthDto.email);
+    if (user?.estado !== 'ACTIVO')
+      throw new UnauthorizedException(
+        'Acceso denegado, actualmente el Usuario no tiene el estado de ACTIVO.',
+      );
     if (user && (await bcrypt.compare(loginAuthDto.password, user.password))) {
       const { password, ...restoUser } = user;
       return restoUser;

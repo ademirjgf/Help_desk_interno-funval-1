@@ -15,6 +15,7 @@ import { AuthService } from './auth.service.js';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto.js';
 import { Public } from '../common/decorators/public.decorator.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -23,6 +24,9 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
+  @ApiOperation({
+    summary: 'Autentica a un Usuario registrado y genera un token de acceso.',
+  })
   @Post('login')
   async login(
     @Body() loginAuthDto: LoginAuthDto,
@@ -31,15 +35,19 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  // @Roles('ADMIN')
-  @Public()
-  @Post('register')
-  async register(@Body() createUsuarioDto: CreateUsuarioDto) {
-    return this.authService.register(createUsuarioDto);
-  }
-
+  @ApiOperation({
+    summary: 'Muestra los datos del perfil del usuario autenticado.',
+  })
   @Get('profile')
   async profile(@Request() req: RequestExpress) {
     return req.user;
+  }
+
+  // @Roles('ADMIN')
+  @Public()
+  @ApiOperation({ summary: 'Registra a un nuevo Usuario.' })
+  @Post('register')
+  async register(@Body() createUsuarioDto: CreateUsuarioDto) {
+    return this.authService.register(createUsuarioDto);
   }
 }
