@@ -36,7 +36,7 @@ export class ComentariosController {
       'Registra un nuevo comentario para una tarea especifico, La fecha y el autor se asignan automaticamente en el servidor.',
   })
   @ApiParam({
-    name: 'idTarea',
+    name: 'idtarea',
     type: Number,
     description: 'ID unico de la tarea al que se agregará el comentario',
     example: 1,
@@ -59,12 +59,12 @@ export class ComentariosController {
     description: 'No encontrado. la tarea no existe.',
   })
   async crear(
-    @Param('idTarea', ParseIntPipe) idTarea: number,
+    @Param('idtarea', ParseIntPipe) idtarea: number,
     @Body() dto: CreateComentarioDto,
     @Request() req: any,
   ) {
     return await this.comentariosService.crearComentario(
-      idTarea,
+      idtarea,
       req.user,
       dto,
     );
@@ -80,7 +80,7 @@ export class ComentariosController {
       'Devuelve todos los comentarios asociados a una tarea en orden ascendente, incluyendo datos publicos del autor.',
   })
   @ApiParam({
-    name: 'idTarea',
+    name: 'idtarea',
     type: Number,
     description: 'ID del tarea del cual se extraera el historial',
     example: 1,
@@ -99,9 +99,9 @@ export class ComentariosController {
     description: 'No encontrado, la tarea no existe.',
   })
   async obtenerHistorial(
-    @Param('idTarea', ParseIntPipe) idTarea: number,
+    @Param('idtarea', ParseIntPipe) idtarea: number,
     @Request() req: any,
   ) {
-    return await this.comentariosService.obtenerHistorial(idTarea, req.user);
+    return await this.comentariosService.obtenerHistorial(idtarea, req.user);
   }
 }

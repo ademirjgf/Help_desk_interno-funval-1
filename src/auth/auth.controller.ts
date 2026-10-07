@@ -16,6 +16,7 @@ import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto.js';
 import { Public } from '../common/decorators/public.decorator.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import { ApiOperation } from '@nestjs/swagger';
+import { RolesGuard } from '../common/guards/roles.guard.js';
 
 @Controller('auth')
 export class AuthController {
@@ -23,7 +24,7 @@ export class AuthController {
 
   @Public()
   @HttpCode(HttpStatus.OK)
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard, RolesGuard)
   @ApiOperation({
     summary: 'Autentica a un Usuario registrado y genera un token de acceso.',
   })
