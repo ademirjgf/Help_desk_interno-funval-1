@@ -8,6 +8,7 @@ import { Estado, EstadoTicket, Rol } from '../prisma/generated/prisma/enums.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CreateTareaDto } from './dto/create-tarea.dto.js';
 import { UpdateTareaDto } from './dto/update-tarea.dto.js';
+import { ComentariosService } from '../comentarios/comentarios.service.js';
 
 type UsuarioAutenticado = {
   id: number;
@@ -27,7 +28,10 @@ const relacionesTarea = {
 
 @Injectable()
 export class TareasService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly comentarioService: ComentariosService,
+  ) {}
 
   findAll(usuario: UsuarioAutenticado) {
     // Los empleados solo ven las tareas que reportaron.
@@ -70,7 +74,7 @@ export class TareasService {
       );
     }
 
-    return this.prisma.tarea.create({
+    const tareaCreada = await this.prisma.tarea.create({
       data: {
         titulo: dto.titulo,
         descripcion: dto.descripcion,
@@ -80,9 +84,16 @@ export class TareasService {
       },
       include: relacionesTarea,
     });
+    await this.comentarioService.crearComentarioSistema(
+      tareaCreada.id,
+      usuario.id,
+      'Se ha registrado la solicitud en el sistema.',
+      EstadoTicket.ABIERTO,
+    );
+    return tareaCreada;
   }
 
-  async update(id: number, dto: UpdateTareaDto) {
+  async update(id: number, dto: UpdateTareaDto, usuario: UsuarioAutenticado) {
     const tarea = await this.prisma.tarea.findUnique({ where: { id } });
 
     if (!tarea) {
@@ -137,7 +148,7 @@ export class TareasService {
       }
     }
 
-    return this.prisma.tarea.update({
+    const tareaActualizada = await this.prisma.tarea.update({
       where: { id },
       data: {
         ...(dto.titulo !== undefined && { titulo: dto.titulo }),
@@ -165,5 +176,17 @@ export class TareasService {
       },
       include: relacionesTarea,
     });
+
+    if (dto.estado !== undefined && dto.estado !== tarea.estado) {
+      await this.comentarioService.crearComentarioSistema(
+        tareaActualizada.id,
+        usuario.id,
+        `El agente asignado cambió el estado del ticket a ${dto.estado}.`,
+        dto.estado,
+        tarea.id_empleado ?? undefined,
+      );
+    }
+
+    return tareaActualizada;
   }
 }
