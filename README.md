@@ -1,5 +1,24 @@
 ## Proyecto API RestFull: "HelpDeskInterno-Funval"
 
+### Instalación
+1.- Clonar el repositorio en un carpeta local 
+    `https://github.com/ademirjgf/Help_desk_interno-funval-1`
+2.- Instalar todas las dependencias del proyecto
+    `pnpm install`
+3.- Actualizar la contraseña de PostGresql y otros en el archivo `.env`
+    con el ejemplo de `.env.example`
+4.- Migrar/Crear la Base de Datos en Postgresql
+    `pnpm prisma migrate dev --name init`
+5.- Generar todas las variables y recursos de Prisma para el proyecto
+    `pnpm prisma generate`
+6.- Agregar data de testing en la base de datos creada (opcional)
+    `pnpm run start:seed`
+7.- Levantar el servidor backend de forma local
+    `pnpm run start:dev`
+8.- Probar los endpoints del proyecto y ver la documentación de forma local
+    `http://localhost:3000/api/docs/`
+
+
 ### Integrantes y Responsabilidades:
   ----------------------------------------------------------------------------------
   |        COLABORADOR                  |                   MODULO                 |
@@ -29,18 +48,18 @@
       - chore: Tareas de mantenimiento, actualización de dependencias o configuraciones.
     - Ejemplos: 
       - feat (Nueva funcionalidad):
-        `git commit -m feat(auth): add google login button`
+        `git commit -m 'feat(auth): add google login button'`
         (Agrega el botón de inicio de sesión con Google en el módulo de autenticación)
       - fix (Corrección de un error):
-        `git commit -m fix(api): resolve memory leak on user checkout`
+        `git commit -m 'fix(api): resolve memory leak on user checkout'`
         (Resuelve una fuga de memoria en la pasarela de pago del usuario)
       - docs (Documentación):
-        `git commit -m docs(readme): update installation instructions for docker`
+        `git commit -m 'docs(readme): update installation instructions for docker'`
         (Actualiza las instrucciones de instalación en el archivo README)
       - style (Formato y estilo visual o de código):
-        `git commit -m style(navbar): fix padding and alignment on mobile layout`
+        `git commit -m 'style(navbar): fix padding and alignment on mobile layout'`
         (Corrige el espaciado y alineación de la barra de navegación en móviles)
       - refactor (Mejora de código sin cambiar su comportamiento):
-        `git commit -m refactor(users): simplify password validation logic`
+        `git commit -m 'refactor(users): simplify password validation logic'`
         (Simplifica la lógica para validar contraseñas)
 
