@@ -78,7 +78,11 @@ export class TareasController {
       },
     },
   })
-  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateTareaDto) {
-    return this.tareasService.update(id, dto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateTareaDto,
+    @Req() req: RequestConUsuario,
+  ) {
+    return this.tareasService.update(id, dto, req.user);
   }
 }
