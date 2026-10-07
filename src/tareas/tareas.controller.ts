@@ -17,7 +17,7 @@ import { RolesGuard } from '../common/guards/roles.guard.js';
 import { CreateTareaDto } from './dto/create-tarea.dto.js';
 import { UpdateTareaDto } from './dto/update-tarea.dto.js';
 import { TareasService } from './tareas.service.js';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 type RequestConUsuario = Request & {
   user: {
@@ -26,7 +26,7 @@ type RequestConUsuario = Request & {
     rol: Rol;
   };
 };
-
+@ApiTags('Tareas')
 @Controller('tareas')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class TareasController {

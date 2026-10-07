@@ -122,13 +122,19 @@ export class ComentariosService {
   private validarAccesoATarea(tarea: any, user: any) {
     if (user.rol === Rol.ADMIN) return;
 
-    if (user.rol === Rol.EMPLEADO && tarea.id_empleado !== user.id) {
+    if (
+      user.rol === Rol.EMPLEADO &&
+      Number(tarea.id_empleado) !== Number(user.id)
+    ) {
       throw new ForbiddenException(
         'No tienes acceso a los comentarios de esta tarea',
       );
     }
 
-    if (user.rol === Rol.AGENTE && tarea.id_agente !== user.id) {
+    if (
+      user.rol === Rol.AGENTE &&
+      Number(tarea.id_agente) !== Number(user.id)
+    ) {
       throw new ForbiddenException(
         'Solo puedes interactuar con las tareas que se te asigno',
       );
