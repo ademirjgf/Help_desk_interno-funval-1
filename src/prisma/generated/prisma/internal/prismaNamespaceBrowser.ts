@@ -108,6 +108,8 @@ export const TareaScalarFieldEnum = {
   estado: 'estado',
   created: 'created',
   updated: 'updated',
+  resueltoEn: 'resueltoEn',
+  cerradoEn: 'cerradoEn',
   id_empleado: 'id_empleado',
   id_agente: 'id_agente',
   id_categoria: 'id_categoria'

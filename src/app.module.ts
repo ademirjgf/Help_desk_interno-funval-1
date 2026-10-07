@@ -10,6 +10,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from './common/guards/roles.guard.js';
 import { NotificacionesModule } from './notificaciones/notificaciones.module.js';
+import { CategoriasModule } from './categorias/categorias.module.js';
+import { TareasModule } from './tareas/tareas.module.js';
 
 // export const { ObserveInstrument } = createObserveModule();
 
@@ -22,6 +24,8 @@ import { NotificacionesModule } from './notificaciones/notificaciones.module.js'
     AuthModule,
     UsuarioModule,
     NotificacionesModule,
+    CategoriasModule,
+    TareasModule,
   ],
   controllers: [AppController],
   providers: [
