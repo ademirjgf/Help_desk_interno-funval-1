@@ -47,6 +47,7 @@ export type TareaMinAggregateOutputType = {
   estado: $Enums.EstadoTicket | null
   created: Date | null
   updated: Date | null
+  prioridad: $Enums.PrioridadTarea | null
   resueltoEn: Date | null
   cerradoEn: Date | null
   id_empleado: number | null
@@ -61,6 +62,7 @@ export type TareaMaxAggregateOutputType = {
   estado: $Enums.EstadoTicket | null
   created: Date | null
   updated: Date | null
+  prioridad: $Enums.PrioridadTarea | null
   resueltoEn: Date | null
   cerradoEn: Date | null
   id_empleado: number | null
@@ -75,6 +77,7 @@ export type TareaCountAggregateOutputType = {
   estado: number
   created: number
   updated: number
+  prioridad: number
   resueltoEn: number
   cerradoEn: number
   id_empleado: number
@@ -105,6 +108,7 @@ export type TareaMinAggregateInputType = {
   estado?: true
   created?: true
   updated?: true
+  prioridad?: true
   resueltoEn?: true
   cerradoEn?: true
   id_empleado?: true
@@ -119,6 +123,7 @@ export type TareaMaxAggregateInputType = {
   estado?: true
   created?: true
   updated?: true
+  prioridad?: true
   resueltoEn?: true
   cerradoEn?: true
   id_empleado?: true
@@ -133,6 +138,7 @@ export type TareaCountAggregateInputType = {
   estado?: true
   created?: true
   updated?: true
+  prioridad?: true
   resueltoEn?: true
   cerradoEn?: true
   id_empleado?: true
@@ -234,6 +240,7 @@ export type TareaGroupByOutputType = {
   estado: $Enums.EstadoTicket
   created: Date
   updated: Date
+  prioridad: $Enums.PrioridadTarea
   resueltoEn: Date | null
   cerradoEn: Date | null
   id_empleado: number | null
@@ -271,6 +278,7 @@ export type TareaWhereInput = {
   estado?: Prisma.EnumEstadoTicketFilter<"Tarea"> | $Enums.EstadoTicket
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFilter<"Tarea"> | $Enums.PrioridadTarea
   resueltoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   cerradoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   id_empleado?: Prisma.IntNullableFilter<"Tarea"> | number | null
@@ -289,6 +297,7 @@ export type TareaOrderByWithRelationInput = {
   estado?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   resueltoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   cerradoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id_empleado?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -310,6 +319,7 @@ export type TareaWhereUniqueInput = Prisma.AtLeast<{
   estado?: Prisma.EnumEstadoTicketFilter<"Tarea"> | $Enums.EstadoTicket
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFilter<"Tarea"> | $Enums.PrioridadTarea
   resueltoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   cerradoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   id_empleado?: Prisma.IntNullableFilter<"Tarea"> | number | null
@@ -328,6 +338,7 @@ export type TareaOrderByWithAggregationInput = {
   estado?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   resueltoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   cerradoEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id_empleado?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -350,6 +361,7 @@ export type TareaScalarWhereWithAggregatesInput = {
   estado?: Prisma.EnumEstadoTicketWithAggregatesFilter<"Tarea"> | $Enums.EstadoTicket
   created?: Prisma.DateTimeWithAggregatesFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Tarea"> | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaWithAggregatesFilter<"Tarea"> | $Enums.PrioridadTarea
   resueltoEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Tarea"> | Date | string | null
   cerradoEn?: Prisma.DateTimeNullableWithAggregatesFilter<"Tarea"> | Date | string | null
   id_empleado?: Prisma.IntNullableWithAggregatesFilter<"Tarea"> | number | null
@@ -363,6 +375,7 @@ export type TareaCreateInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   empleado?: Prisma.UsuarioCreateNestedOneWithoutTareasReportadasInput
@@ -378,6 +391,7 @@ export type TareaUncheckedCreateInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -392,6 +406,7 @@ export type TareaUpdateInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   empleado?: Prisma.UsuarioUpdateOneWithoutTareasReportadasNestedInput
@@ -407,6 +422,7 @@ export type TareaUncheckedUpdateInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -422,6 +438,7 @@ export type TareaCreateManyInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -435,6 +452,7 @@ export type TareaUpdateManyMutationInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -446,6 +464,7 @@ export type TareaUncheckedUpdateManyInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -470,6 +489,7 @@ export type TareaCountOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   resueltoEn?: Prisma.SortOrder
   cerradoEn?: Prisma.SortOrder
   id_empleado?: Prisma.SortOrder
@@ -491,6 +511,7 @@ export type TareaMaxOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   resueltoEn?: Prisma.SortOrder
   cerradoEn?: Prisma.SortOrder
   id_empleado?: Prisma.SortOrder
@@ -505,6 +526,7 @@ export type TareaMinOrderByAggregateInput = {
   estado?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  prioridad?: Prisma.SortOrder
   resueltoEn?: Prisma.SortOrder
   cerradoEn?: Prisma.SortOrder
   id_empleado?: Prisma.SortOrder
@@ -654,6 +676,10 @@ export type EnumEstadoTicketFieldUpdateOperationsInput = {
   set?: $Enums.EstadoTicket
 }
 
+export type EnumPrioridadTareaFieldUpdateOperationsInput = {
+  set?: $Enums.PrioridadTarea
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -686,6 +712,7 @@ export type TareaCreateWithoutEmpleadoInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   agente?: Prisma.UsuarioCreateNestedOneWithoutTareasAsignadasInput
@@ -700,6 +727,7 @@ export type TareaUncheckedCreateWithoutEmpleadoInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_agente?: number | null
@@ -723,6 +751,7 @@ export type TareaCreateWithoutAgenteInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   empleado?: Prisma.UsuarioCreateNestedOneWithoutTareasReportadasInput
@@ -737,6 +766,7 @@ export type TareaUncheckedCreateWithoutAgenteInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -780,6 +810,7 @@ export type TareaScalarWhereInput = {
   estado?: Prisma.EnumEstadoTicketFilter<"Tarea"> | $Enums.EstadoTicket
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFilter<"Tarea"> | $Enums.PrioridadTarea
   resueltoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   cerradoEn?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   id_empleado?: Prisma.IntNullableFilter<"Tarea"> | number | null
@@ -809,6 +840,7 @@ export type TareaCreateWithoutCategoriaInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   empleado?: Prisma.UsuarioCreateNestedOneWithoutTareasReportadasInput
@@ -823,6 +855,7 @@ export type TareaUncheckedCreateWithoutCategoriaInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -862,6 +895,7 @@ export type TareaCreateWithoutComentariosInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   empleado?: Prisma.UsuarioCreateNestedOneWithoutTareasReportadasInput
@@ -876,6 +910,7 @@ export type TareaUncheckedCreateWithoutComentariosInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -905,6 +940,7 @@ export type TareaUpdateWithoutComentariosInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   empleado?: Prisma.UsuarioUpdateOneWithoutTareasReportadasNestedInput
@@ -919,6 +955,7 @@ export type TareaUncheckedUpdateWithoutComentariosInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -933,6 +970,7 @@ export type TareaCreateManyEmpleadoInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_agente?: number | null
@@ -946,6 +984,7 @@ export type TareaCreateManyAgenteInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -958,6 +997,7 @@ export type TareaUpdateWithoutEmpleadoInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   agente?: Prisma.UsuarioUpdateOneWithoutTareasAsignadasNestedInput
@@ -972,6 +1012,7 @@ export type TareaUncheckedUpdateWithoutEmpleadoInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_agente?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -986,6 +1027,7 @@ export type TareaUncheckedUpdateManyWithoutEmpleadoInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_agente?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -998,6 +1040,7 @@ export type TareaUpdateWithoutAgenteInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   empleado?: Prisma.UsuarioUpdateOneWithoutTareasReportadasNestedInput
@@ -1012,6 +1055,7 @@ export type TareaUncheckedUpdateWithoutAgenteInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1026,6 +1070,7 @@ export type TareaUncheckedUpdateManyWithoutAgenteInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1039,6 +1084,7 @@ export type TareaCreateManyCategoriaInput = {
   estado: $Enums.EstadoTicket
   created?: Date | string
   updated?: Date | string
+  prioridad?: $Enums.PrioridadTarea
   resueltoEn?: Date | string | null
   cerradoEn?: Date | string | null
   id_empleado?: number | null
@@ -1051,6 +1097,7 @@ export type TareaUpdateWithoutCategoriaInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   empleado?: Prisma.UsuarioUpdateOneWithoutTareasReportadasNestedInput
@@ -1065,6 +1112,7 @@ export type TareaUncheckedUpdateWithoutCategoriaInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1079,6 +1127,7 @@ export type TareaUncheckedUpdateManyWithoutCategoriaInput = {
   estado?: Prisma.EnumEstadoTicketFieldUpdateOperationsInput | $Enums.EstadoTicket
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridad?: Prisma.EnumPrioridadTareaFieldUpdateOperationsInput | $Enums.PrioridadTarea
   resueltoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cerradoEn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   id_empleado?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1123,6 +1172,7 @@ export type TareaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   estado?: boolean
   created?: boolean
   updated?: boolean
+  prioridad?: boolean
   resueltoEn?: boolean
   cerradoEn?: boolean
   id_empleado?: boolean
@@ -1142,6 +1192,7 @@ export type TareaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   estado?: boolean
   created?: boolean
   updated?: boolean
+  prioridad?: boolean
   resueltoEn?: boolean
   cerradoEn?: boolean
   id_empleado?: boolean
@@ -1159,6 +1210,7 @@ export type TareaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   estado?: boolean
   created?: boolean
   updated?: boolean
+  prioridad?: boolean
   resueltoEn?: boolean
   cerradoEn?: boolean
   id_empleado?: boolean
@@ -1176,6 +1228,7 @@ export type TareaSelectScalar = {
   estado?: boolean
   created?: boolean
   updated?: boolean
+  prioridad?: boolean
   resueltoEn?: boolean
   cerradoEn?: boolean
   id_empleado?: boolean
@@ -1183,7 +1236,7 @@ export type TareaSelectScalar = {
   id_categoria?: boolean
 }
 
-export type TareaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descripcion" | "estado" | "created" | "updated" | "resueltoEn" | "cerradoEn" | "id_empleado" | "id_agente" | "id_categoria", ExtArgs["result"]["tarea"]>
+export type TareaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descripcion" | "estado" | "created" | "updated" | "prioridad" | "resueltoEn" | "cerradoEn" | "id_empleado" | "id_agente" | "id_categoria", ExtArgs["result"]["tarea"]>
 export type TareaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   empleado?: boolean | Prisma.Tarea$empleadoArgs<ExtArgs>
   agente?: boolean | Prisma.Tarea$agenteArgs<ExtArgs>
@@ -1217,6 +1270,7 @@ export type $TareaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     estado: $Enums.EstadoTicket
     created: Date
     updated: Date
+    prioridad: $Enums.PrioridadTarea
     resueltoEn: Date | null
     cerradoEn: Date | null
     id_empleado: number | null
@@ -1655,6 +1709,7 @@ export interface TareaFieldRefs {
   readonly estado: Prisma.FieldRef<"Tarea", 'EstadoTicket'>
   readonly created: Prisma.FieldRef<"Tarea", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Tarea", 'DateTime'>
+  readonly prioridad: Prisma.FieldRef<"Tarea", 'PrioridadTarea'>
   readonly resueltoEn: Prisma.FieldRef<"Tarea", 'DateTime'>
   readonly cerradoEn: Prisma.FieldRef<"Tarea", 'DateTime'>
   readonly id_empleado: Prisma.FieldRef<"Tarea", 'Int'>

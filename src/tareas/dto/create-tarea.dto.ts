@@ -5,7 +5,11 @@ import {
   MaxLength,
   Min,
   MinLength,
+  IsEnum,
+  IsOptional,
 } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { PrioridadTarea } from '../../prisma/generated/prisma/enums.js';
 
 export class CreateTareaDto {
   @IsString()
@@ -20,4 +24,12 @@ export class CreateTareaDto {
   @IsInt()
   @Min(1)
   id_categoria: number;
+
+  @ApiPropertyOptional({
+    enum: PrioridadTarea,
+    example: PrioridadTarea.ALTA,
+  })
+  @IsOptional()
+  @IsEnum(PrioridadTarea)
+  prioridad?: PrioridadTarea;
 }

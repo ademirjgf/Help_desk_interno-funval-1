@@ -43,3 +43,12 @@ export const EstadoTicket = {
 } as const
 
 export type EstadoTicket = (typeof EstadoTicket)[keyof typeof EstadoTicket]
+
+
+export const PrioridadTarea = {
+  BAJA: 'BAJA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA'
+} as const
+
+export type PrioridadTarea = (typeof PrioridadTarea)[keyof typeof PrioridadTarea]
