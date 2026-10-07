@@ -6,13 +6,20 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service.js';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { QueryUsuarioDto } from './dto/query-usuario.dto.js';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
+import { RolesGuard } from '../common/guards/roles.guard.js';
 
+@ApiBearerAuth('JWT-auth')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('ADMIN')
 @Controller('usuario')
 export class UsuarioController {
@@ -24,10 +31,11 @@ export class UsuarioController {
   //   return this.usuarioService.create(createUsuarioDto);
   // }
 
+  @Roles('ADMIN', 'AGENTE')
   @ApiOperation({ summary: 'Lista todos los Usuarios' })
   @Get()
-  findAll() {
-    return this.usuarioService.findAll();
+  findAll(@Query() query: QueryUsuarioDto) {
+    return this.usuarioService.findAll(query);
   }
 
   @ApiOperation({ summary: 'Muestra un Usuario, identificado por su ID' })

@@ -3,6 +3,7 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import bcrypt from 'bcryptjs';
+import { QueryUsuarioDto } from './dto/query-usuario.dto.js';
 
 @Injectable()
 export class UsuarioService {
@@ -17,8 +18,10 @@ export class UsuarioService {
     });
   }
 
-  async findAll() {
+  async findAll(query: QueryUsuarioDto) {
+    const { rol } = query;
     return await this.prisma.usuario.findMany({
+      where: { ...(rol && { rol }) },
       orderBy: { id: 'asc' },
       omit: { password: true },
     });
