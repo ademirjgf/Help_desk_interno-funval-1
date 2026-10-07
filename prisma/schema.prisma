@@ -82,7 +82,11 @@ model Tarea {
   created     DateTime     @default(now())
   updated     DateTime     @updatedAt
 
-  // Claves foráneas (Opcionales gracias al ?)
+  // Fechas del ciclo de vida
+  resueltoEn  DateTime?
+  cerradoEn   DateTime?
+
+  // Claves foráneas
   id_empleado  Int?
   id_agente    Int?
   id_categoria Int
