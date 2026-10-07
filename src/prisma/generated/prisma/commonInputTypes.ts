@@ -170,6 +170,13 @@ export type EnumEstadoTicketFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel> | $Enums.EstadoTicket
 }
 
+export type EnumPrioridadTareaFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadTarea | Prisma.EnumPrioridadTareaFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel> | $Enums.PrioridadTarea
+}
+
 export type DateTimeNullableFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null
   in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -205,6 +212,16 @@ export type EnumEstadoTicketWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel>
+}
+
+export type EnumPrioridadTareaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadTarea | Prisma.EnumPrioridadTareaFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadTareaWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadTarea
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel>
 }
 
 export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -452,6 +469,13 @@ export type NestedEnumEstadoTicketFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel> | $Enums.EstadoTicket
 }
 
+export type NestedEnumPrioridadTareaFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadTarea | Prisma.EnumPrioridadTareaFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel> | $Enums.PrioridadTarea
+}
+
 export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null
   in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -482,6 +506,16 @@ export type NestedEnumEstadoTicketWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoTicketFilter<$PrismaModel>
+}
+
+export type NestedEnumPrioridadTareaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PrioridadTarea | Prisma.EnumPrioridadTareaFieldRefInput<$PrismaModel>
+  in?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PrioridadTarea[] | Prisma.ListEnumPrioridadTareaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPrioridadTareaWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadTarea
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPrioridadTareaFilter<$PrismaModel>
 }
 
 export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {

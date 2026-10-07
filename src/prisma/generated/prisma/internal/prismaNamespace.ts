@@ -864,6 +864,7 @@ export const TareaScalarFieldEnum = {
   estado: 'estado',
   created: 'created',
   updated: 'updated',
+  prioridad: 'prioridad',
   resueltoEn: 'resueltoEn',
   cerradoEn: 'cerradoEn',
   id_empleado: 'id_empleado',
@@ -1031,6 +1032,20 @@ export type EnumEstadoTicketFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'EstadoTicket[]'
  */
 export type ListEnumEstadoTicketFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoTicket[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioridadTarea'
+ */
+export type EnumPrioridadTareaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadTarea'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioridadTarea[]'
+ */
+export type ListEnumPrioridadTareaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadTarea[]'>
     
 
 

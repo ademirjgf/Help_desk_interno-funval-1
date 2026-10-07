@@ -79,6 +79,7 @@ export class TareasService {
         titulo: dto.titulo,
         descripcion: dto.descripcion,
         estado: EstadoTicket.ABIERTO,
+        prioridad: dto.prioridad,
         empleado: { connect: { id: usuario.id } },
         categoria: { connect: { id: dto.id_categoria } },
       },
@@ -165,6 +166,10 @@ export class TareasService {
           dto.id_agente !== null && {
             agente: { connect: { id: dto.id_agente } },
           }),
+        ...(dto.estado !== undefined && { estado: dto.estado }),
+        ...(dto.prioridad !== undefined && {
+          prioridad: dto.prioridad,
+        }),
         ...(dto.estado !== undefined && { estado: dto.estado }),
         ...(dto.estado === EstadoTicket.RESUELTO &&
           tarea.estado !== EstadoTicket.RESUELTO && {

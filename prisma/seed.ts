@@ -5,6 +5,7 @@ import {
   Estado,
   TipoCategoria,
   EstadoTicket,
+  PrioridadTarea,
 } from '../src/prisma/generated/prisma/enums.js';
 import { Decimal } from '@prisma/client/runtime/client';
 import bcrypt from 'bcryptjs';
@@ -150,6 +151,7 @@ async function main() {
       descripcion:
         'Ayer apagué el equipo normalmente y hoy la pantalla se queda en negro, aunque el ventilador suena.',
       estado: EstadoTicket.ABIERTO,
+      prioridad: PrioridadTarea.ALTA,
       id_empleado: empleado.id,
       id_categoria: catHardware.id,
     },
@@ -161,6 +163,7 @@ async function main() {
       descripcion:
         'Requiero la licencia para el ingreso del nuevo diseñador de la jefatura de marketing.',
       estado: EstadoTicket.EN_PROCESO,
+      prioridad: PrioridadTarea.MEDIA,
       id_empleado: empleado.id,
       id_agente: agente.id,
       id_categoria: catSoftware.id,
@@ -173,6 +176,7 @@ async function main() {
       descripcion:
         'Cada 15 minutos me desconecta del servidor de base de datos remoto cuando estoy en home office.',
       estado: EstadoTicket.ABIERTO,
+      prioridad: PrioridadTarea.ALTA,
       id_empleado: empleado.id,
       id_categoria: catRedes.id,
     },
@@ -184,6 +188,7 @@ async function main() {
       descripcion:
         'Solicito acceso de lectura por 3 días para auditoría trimestral.',
       estado: EstadoTicket.RESUELTO,
+      prioridad: PrioridadTarea.BAJA,
       id_empleado: empleado.id,
       id_agente: agente.id,
       id_categoria: catAccesos.id,
@@ -196,6 +201,7 @@ async function main() {
       descripcion:
         'No me cargan los correos nuevos desde las 8:00 AM, sale código de error interno.',
       estado: EstadoTicket.CERRADO,
+      prioridad: PrioridadTarea.MEDIA,
       id_empleado: empleado.id,
       id_agente: agente.id,
       id_categoria: catCorreos.id,
@@ -208,6 +214,7 @@ async function main() {
       descripcion:
         'Descargué un adjunto que parecía una factura y saltó el antivirus bloqueando el sistema.',
       estado: EstadoTicket.EN_PROCESO,
+      prioridad: PrioridadTarea.ALTA,
       id_empleado: empleado.id,
       id_agente: admin.id, // Asignado al admin por alta prioridad
       id_categoria: catSeguridad.id,

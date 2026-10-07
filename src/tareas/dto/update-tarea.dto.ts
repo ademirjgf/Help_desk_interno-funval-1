@@ -7,7 +7,10 @@ import {
   MinLength,
   ValidateIf,
 } from 'class-validator';
-import { EstadoTicket } from '../../prisma/generated/prisma/enums.js';
+import {
+  EstadoTicket,
+  PrioridadTarea,
+} from '../../prisma/generated/prisma/enums.js';
 
 export class UpdateTareaDto {
   @ValidateIf((_, value) => value !== undefined)
@@ -33,4 +36,8 @@ export class UpdateTareaDto {
   @ValidateIf((_, value) => value !== undefined)
   @IsEnum(EstadoTicket)
   estado?: EstadoTicket;
+
+  @ValidateIf((_, value) => value !== undefined)
+  @IsEnum(PrioridadTarea)
+  prioridad?: PrioridadTarea;
 }

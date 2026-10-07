@@ -36,6 +36,12 @@ enum EstadoTicket {
   CERRADO
 }
 
+enum PrioridadTarea {
+  BAJA
+  MEDIA
+  ALTA
+}
+
 // ==========================================
 // MODELOS / TABLAS
 // ==========================================
@@ -75,12 +81,13 @@ model Categoria {
 }
 
 model Tarea {
-  id          Int          @id @default(autoincrement())
-  titulo      String       @db.VarChar(255)
-  descripcion String       @db.Text
+  id          Int            @id @default(autoincrement())
+  titulo      String         @db.VarChar(255)
+  descripcion String         @db.Text
   estado      EstadoTicket
-  created     DateTime     @default(now())
-  updated     DateTime     @updatedAt
+  created     DateTime       @default(now())
+  updated     DateTime       @updatedAt
+  prioridad   PrioridadTarea @default(MEDIA)
 
   // Fechas del ciclo de vida
   resueltoEn  DateTime?
