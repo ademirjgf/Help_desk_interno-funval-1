@@ -29,7 +29,7 @@ export class ComentariosService {
       const nuevoComentario = await tx.comentario.create({
         data: {
           descripcion: dto.descripcion,
-          estado_actual: dto.estado_actual ?? null,
+          estado_actual: dto.estado_actual ?? tarea.estado,
           id_tarea: idTarea,
           id_autor: user.id, // Registrado por el sistema automaticamente
         },
