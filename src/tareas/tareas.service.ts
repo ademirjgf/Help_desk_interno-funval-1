@@ -33,12 +33,12 @@ export class TareasService {
     private readonly comentarioService: ComentariosService,
   ) {}
 
-  findAll(usuario: UsuarioAutenticado) {
+  async findAll(usuario: UsuarioAutenticado) {
     // Los empleados solo ven las tareas que reportaron.
     const where =
       usuario.rol === Rol.EMPLEADO ? { id_empleado: usuario.id } : {};
 
-    return this.prisma.tarea.findMany({
+    return await this.prisma.tarea.findMany({
       where,
       include: relacionesTarea,
       orderBy: { created: 'desc' },
@@ -96,7 +96,10 @@ export class TareasService {
 
   async update(id: number, dto: UpdateTareaDto, usuario: UsuarioAutenticado) {
     const tarea = await this.prisma.tarea.findUnique({ where: { id } });
-
+    if (tarea?.id_agente && dto.id_agente !== usuario.id)
+      throw new BadRequestException(
+        `La Tarea ya esta asignada al Agente con id=${tarea.id_agente}`,
+      );
     if (!tarea) {
       throw new NotFoundException(`No existe la tarea con id ${id}.`);
     }
@@ -193,5 +196,41 @@ export class TareasService {
     }
 
     return tareaActualizada;
+  }
+
+  async metricas() {
+    // 1. Agrupamos y contamos las tareas
+    const conteosAgrupados = await this.prisma.tarea.groupBy({
+      by: ['id_categoria', 'estado'],
+      _count: {
+        _all: true, // Cuenta el total de registros en cada grupo
+      },
+    });
+
+    // 2. Traemos las categorías para asociar los IDs con sus nombres/subtipos reales
+    const categorias = await this.prisma.categoria.findMany({
+      select: {
+        id: true,
+        tipo: true,
+        sub_tipo: true,
+      },
+    });
+
+    // Creamos un mapa rápido para buscar categorías por ID de forma eficiente O(1)
+    const categoriaMap = new Map(categorias.map((cat) => [cat.id, cat]));
+
+    // 3. Formateamos la respuesta final combinando los datos
+    const reporteFinal = conteosAgrupados.map((grupo) => {
+      const categoriaInfo = categoriaMap.get(grupo.id_categoria);
+      return {
+        // id_categoria: grupo.id_categoria,
+        categoria_tipo: categoriaInfo?.tipo || 'DESCONOCIDO',
+        categoria_sub_tipo: categoriaInfo?.sub_tipo || 'Sin Subcategoría',
+        estado: grupo.estado,
+        total_tickets: grupo._count._all,
+      };
+    });
+
+    return reporteFinal;
   }
 }

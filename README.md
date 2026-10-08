@@ -103,3 +103,5 @@ No se utiliza Nodemailer ni un proveedor de correo electrónico para las notific
         `git commit -m 'refactor(users): simplify password validation logic'`
         (Simplifica la lógica para validar contraseñas)
 
+### Acuerdo de lógica del negocio:
+- Los responsables para asignar tickets de una Tarea son usuarios con rol de `ADMIN`, y también usuarios con rol de `AGENTE`, siempre que la Tarea no tenga un agente asignado.

@@ -216,7 +216,7 @@ async function main() {
       estado: EstadoTicket.EN_PROCESO,
       prioridad: PrioridadTarea.ALTA,
       id_empleado: empleado.id,
-      id_agente: admin.id, // Asignado al admin por alta prioridad
+      id_agente: agente.id,
       id_categoria: catSeguridad.id,
     },
   });
