@@ -96,7 +96,11 @@ export class TareasService {
 
   async update(id: number, dto: UpdateTareaDto, usuario: UsuarioAutenticado) {
     const tarea = await this.prisma.tarea.findUnique({ where: { id } });
-    if (tarea?.id_agente && dto.id_agente !== usuario.id)
+    if (
+      tarea?.id_agente &&
+      dto.id_agente !== usuario.id &&
+      usuario.rol !== 'ADMIN'
+    )
       throw new BadRequestException(
         `La Tarea ya esta asignada al Agente con id=${tarea.id_agente}`,
       );
