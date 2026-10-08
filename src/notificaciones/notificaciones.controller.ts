@@ -3,6 +3,7 @@ import {
   Get,
   Param,
   Patch,
+  Post,
   Req,
 } from '@nestjs/common';
 import { NotificacionesService } from './notificaciones.service.js';
@@ -41,6 +42,17 @@ export class NotificacionesController {
     return this.notificacionesService.marcarComoLeida(
       Number(id),
       request.user.id,
+    );
+  }
+
+  @Post('prueba/:idUsuario/:idComentario')
+  probarNotificacion(
+    @Param('idUsuario') idUsuario: string,
+    @Param('idComentario') idComentario: string,
+  ) {
+    return this.notificacionesService.crear(
+      Number(idUsuario),
+      Number(idComentario),
     );
   }
 }
