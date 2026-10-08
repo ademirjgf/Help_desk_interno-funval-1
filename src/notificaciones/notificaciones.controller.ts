@@ -29,7 +29,7 @@ export class NotificacionesController {
     );
   }
 
-/*   @Patch(':id/leida')
+  @Patch(':id/leida')
   marcarComoLeida(
     @Param('id') id: string,
     @Req()
@@ -43,7 +43,7 @@ export class NotificacionesController {
       Number(id),
       request.user.id,
     );
-  } */
+  }
 
   @Post('prueba/:idUsuario/:idComentario')
   probarNotificacion(
