@@ -16,6 +16,7 @@ export class NotificacionesService {
     idUsuario: number,
     idComentario: number,
   ) {
+    
     const notificacion =
       await this.prisma.notificacion.create({
         data: {

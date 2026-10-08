@@ -6,85 +6,84 @@ import {
 import { PrismaService } from '../prisma/prisma.service.js'; // Ajusta la ruta según tu proyecto
 import { CreateComentarioDto } from './dto/create-comentario.dto.js';
 import { Rol } from '../prisma/generated/prisma/enums.js';
+import { NotificacionesService } from '../notificaciones/notificaciones.service.js';
 
 @Injectable()
 export class ComentariosService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+  private readonly prisma: PrismaService,
+  private readonly notificacionesService: NotificacionesService,
+) {}
 
   // 1. crear comentario manual
   async crearComentario(idTarea: number, user: any, dto: CreateComentarioDto) {
-    const tarea = await this.prisma.tarea.findUnique({
-      where: { id: idTarea },
-    });
+  const tarea = await this.prisma.tarea.findUnique({
+    where: { id: idTarea },
+  });
 
-    if (!tarea) {
-      throw new NotFoundException(`La tarea con ID ${idTarea} no existe.`);
-    }
-
-    // validamos la visibilidad de la tarea a los usuarios
-    this.validarAccesoATarea(tarea, user);
-
-    // transacción: crear comentario y generar la notificacion requerida
-    return await this.prisma.$transaction(async (tx) => {
-      const nuevoComentario = await tx.comentario.create({
-        data: {
-          descripcion: dto.descripcion,
-          estado_actual: dto.estado_actual ?? null,
-          id_tarea: idTarea,
-          id_autor: user.id, // Registrado por el sistema automaticamente
-        },
-      });
-
-      // determinar a quien va dirigida la notificacion
-      const destinatarioId =
-        user.rol === Rol.EMPLEADO ? tarea.id_agente : tarea.id_empleado;
-
-      // generar notificacion si existe destinatario asignado
-      if (destinatarioId) {
-        await tx.notificacion.create({
-          data: {
-            leido: false,
-            id_comentario: nuevoComentario.id,
-            id_usuario: destinatarioId,
-          },
-        });
-      }
-
-      return nuevoComentario;
-    });
+  if (!tarea) {
+    throw new NotFoundException(`La tarea con ID ${idTarea} no existe.`);
   }
 
+  this.validarAccesoATarea(tarea, user);
+
+  // Primero guardamos el comentario
+  const nuevoComentario = await this.prisma.comentario.create({
+    data: {
+      descripcion: dto.descripcion,
+      estado_actual: dto.estado_actual ?? null,
+      id_tarea: idTarea,
+      id_autor: user.id,
+    },
+  });
+
+  const destinatarioId =
+    user.rol === Rol.EMPLEADO ? tarea.id_agente : tarea.id_empleado;
+
+  // La notificación no debe impedir que el comentario quede guardado
+  if (destinatarioId !== null && destinatarioId !== undefined) {
+    try {
+      await this.notificacionesService.crear(
+        destinatarioId,
+        nuevoComentario.id,
+      );
+    } catch (error) {
+      console.error('Error al generar notificación:', error);
+    }
+  }
+
+  return nuevoComentario;
+}
   // 2. funcion interna para que el modulo de TAREAS cree comentarios de sistema
   async crearComentarioSistema(
-    idTarea: number,
-    idAutor: number,
-    descripcion: string,
-    nuevoEstado?: any,
-    idUsuarioANotificar?: number,
-  ) {
-    return await this.prisma.$transaction(async (tx) => {
-      const comentario = await tx.comentario.create({
-        data: {
-          descripcion,
-          estado_actual: nuevoEstado ?? null,
-          id_tarea: idTarea,
-          id_autor: idAutor,
-        },
-      });
+  idTarea: number,
+  idAutor: number,
+  descripcion: string,
+  nuevoEstado?: any,
+  idUsuarioANotificar?: number,
+) {
+  const comentario = await this.prisma.comentario.create({
+    data: {
+      descripcion,
+      estado_actual: nuevoEstado ?? null,
+      id_tarea: idTarea,
+      id_autor: idAutor,
+    },
+  });
 
-      if (idUsuarioANotificar) {
-        await tx.notificacion.create({
-          data: {
-            leido: false,
-            id_comentario: comentario.id,
-            id_usuario: idUsuarioANotificar,
-          },
-        });
-      }
-
-      return comentario;
-    });
+  if (idUsuarioANotificar !== undefined) {
+    try {
+      await this.notificacionesService.crear(
+        idUsuarioANotificar,
+        comentario.id,
+      );
+    } catch (error) {
+      console.error('Error al generar notificación:', error);
+    }
   }
+
+  return comentario;
+}
 
   // 3. Consultar historial en orden cronológico
   async obtenerHistorial(idTarea: number, user: any) {

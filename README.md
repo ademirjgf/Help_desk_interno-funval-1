@@ -18,6 +18,46 @@
 8.- Probar los endpoints del proyecto y ver la documentación de forma local
     `http://localhost:3000/api/docs/`
 
+### US-18 — Notificaciones en tiempo real
+
+Para las notificaciones del sistema, el equipo eligió utilizar **WebSockets mediante Socket.IO** en lugar de correo electrónico con Nodemailer.
+
+#### ¿Por qué WebSockets / Socket.IO?
+
+Se eligió esta tecnología porque las notificaciones deben llegar al usuario **en tiempo real**, sin que tenga que actualizar manualmente la página o realizar consultas periódicas al servidor.
+
+Las principales razones fueron:
+
+- Permite comunicación bidireccional y en tiempo real entre el backend y los clientes.
+- Las notificaciones se envían inmediatamente cuando se genera un nuevo evento.
+- Evita realizar consultas repetitivas al servidor mediante polling.
+- Socket.IO facilita la gestión de conexiones y eventos dentro de NestJS.
+- Permite enviar las notificaciones únicamente al usuario correspondiente mediante salas (`rooms`).
+
+#### Implementación
+
+El sistema utiliza el namespace:
+
+`/notificaciones`
+
+El cliente se registra mediante el evento:
+
+`registrarUsuario`
+
+enviando su identificador de usuario. El servidor lo incorpora a una sala específica:
+
+`usuario:<idUsuario>`
+
+Cuando se genera una nueva notificación, el backend emite el evento:
+
+`nuevaNotificacion`
+
+únicamente a la sala correspondiente al usuario destinatario.
+
+#### Correo electrónico
+
+No se utiliza Nodemailer ni un proveedor de correo electrónico para las notificaciones, por lo que **no se requieren credenciales SMTP ni variables de entorno relacionadas con correo electrónico**.
+
 
 ### Integrantes y Responsabilidades:
   ----------------------------------------------------------------------------------
